@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page">
+
+        <form class="popup">
+            <div class="popup__main-container">
+                <button class ="button popup__close-button" type="button"></button>
+                <h2 class="popup__heading">Редактировать профиль</h2>
+                <fieldset class="popup__container">
+                    <input type="text" class="popup__item popup__item_el_name" placeholder="Имя" value="Жак-Ив Кусто">
+                    <input type="text" class="popup__item popup__item_el_status" placeholder="О себе" value="Исследователь океана">
+                </fieldset> 
+                <div class="popup__button-container">
+                    <button class="button popup__submit-button">Сохранить</button>
+                </div>
+            </div>
+        </form>
+
+        <header class="header">
+            <div class="header__logo"></div>
+        </header>
+        
+        <main class="main">
+            <div class="profile">
+                <div class="profile__container">
+                    <img class="avatar" src="./images/avatar/avatar.png" alt="Аватар пользователя">
+                    <div class="profile-info">
+                        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+                        <button class="button profile-info__edit-button"></button>
+                        <p class="profile-info__status">Исследователь океана</p>
+                    </div>
+                </div>
+                <button class="button add-button"></button>
+            </div>
+            <ul class="elements">
+                    <li class="element">
+                        <img class="element__image" src="./images/element/Италия.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Италия</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+
+                    <li class="element">
+                        <img class="element__image" src="./images/element/Иордания.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Иордания</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+
+                    <li class="element">
+                        <img class="element__image" src="./images/element/Непал.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Непал</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+
+                    <li class="element">
+                        <img class="element__image" src="./images/element/Перу.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Перу</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+
+                    <li class="element">
+                        <img class="element__image" src="./images/element/Турция.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Турция</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+
+                    <li class="element">
+                        <img class="element__image" src="./images/element/США.jpg" alt="Фотография">
+                        <div class="element__container">
+                            <p class="element__text">Соединенные Штаты Америки</p>
+                            <button class="button element__like"></button>
+                        </div>
+                    </li>
+            </ul>
+            <footer class="footer">
+                <p class="footer__author">&copy; 2020 Mesto Russia</p>
+            </footer>
+        </main>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/*
+TODO list:
+1. !DONE! Поправить padding в header__logo; DONE
+2. !DONE! Подключить корректные шрифты, удалить лишние, добавить новые; DONE
+3. !DONE! Что-то не так с grid-template-areas в profile-info, почему-то не работает; DONE
+4. !DONE! Сдвинуть кнопку profile-info__edit-button вправо при разрешении до 700рх; DONE
+5. !DONE! Оптимизировать СВГшки DONE
+6. !DONE! Сделать картинки плавно расширяющими высоту в element. DONE
+7. !DONE!Расписать README DONE
+9. !DONE! Сверстать padding в popup__submit-button и в popup__container DONE
+10. !DONE! Сверстать адаптивный popup DONE
+12. !DONE! Всем hover задать разные opacity DONE
+13. !DONE! Сдвинуть ручку так, чтобы имя было по центру DONE
+14. !DONE! Проверить на пиксельперфект DONE
+*/
+
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/font.css);
+
+@import url(../blocks/page/page.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+@import url(../blocks/button/button.css);
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__container/profile__container.css);
+@import url(../blocks/avatar/avatar.css);
+
+@import url(../blocks/profile-info/profile-info.css);
+@import url(../blocks/profile-info/__name/profile-info__name.css);
+@import url(../blocks/profile-info/__status/profile-info__status.css);
+@import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
+@import url(../blocks/add-button/add-button.css);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__list/elements__list.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__container/element__container.css);
+@import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/element/__like/element__like.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__author/footer__author.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/overlay/overlay.css);
+@import url(../blocks/popup/__main-container/popup__main-container.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__heading/popup__heading.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__button-container/popup__button-container.css);
+@import url(../blocks/popup/__submit-button/popup__submit-button.css);
+@import url(../blocks/popup/__item/popup__item.css);
+@import url(../blocks/popup/_opened/popup_opened.css);

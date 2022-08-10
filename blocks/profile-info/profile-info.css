@@ -1,0 +1,19 @@
+.profile-info{
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: 
+    "profile-info__name profile-info__edit-button" 
+    "profile-info__status profile-info__status"; /*TODO: почему-то не работает*/
+    row-gap: 16px;
+    column-gap: 18px;
+}
+
+@media screen and (max-width: 700px){
+    .profile-info{
+        grid-template-columns: 1fr 18px;
+        row-gap: 14px;
+        column-gap: 10px;
+        min-width: fit-content;
+    }
+}

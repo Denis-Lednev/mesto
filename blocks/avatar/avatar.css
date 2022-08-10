@@ -1,0 +1,7 @@
+.avatar{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    max-height: 120px;
+    border-radius: 50%;
+}
