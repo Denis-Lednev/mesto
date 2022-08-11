@@ -11,9 +11,8 @@
     }
 }
 
-
 @media screen and (max-width: 330px) {
     .element__image{
-        max-height: 282px
+        max-height: 282px;
     }
 }
