@@ -1,8 +1,5 @@
 .add-button{
-    background-image: url(../../images/add-button/add-button.svg);
     background-color: #000;
-    background-repeat: no-repeat;
-    background-position: center;
     max-width: 150px;
     min-height: 50px;
     width: 100%;
