@@ -2,7 +2,7 @@ let page = document.querySelector('.page');
 let popup = page.querySelector('.popup');
 let editButton = page.querySelector('.profile-info__edit-button');
 
-let formElement = page.querySelector('.popup') 
+let formElement = page.querySelector('.popup__form') 
 let nameInput = page.querySelector('.popup__item_el_name') 
 let jobInput = page.querySelector('.popup__item_el_status') 
 let profileInfoName = page.querySelector('.profile-info__name');
