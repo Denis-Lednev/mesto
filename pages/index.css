@@ -14,6 +14,11 @@ TODO list:
 14. !DONE! Проверить на пиксельперфект DONE
 */
 
+/* TODO list (new):
+15. Сжались карточки в высоту - поправить
+16. Удалить все остальные элементы, которые добавлены с помощью HTML
+*/
+
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/font.css);
 

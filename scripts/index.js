@@ -35,3 +35,48 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler); 
+
+
+
+/* Пытамеся реализовать template */
+
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+]; 
+
+const listElements = page.querySelector('.elements');
+
+function addNewElement(e) {
+    const templateElement = page.querySelector('.template-element').content;
+    const newElement = templateElement.querySelector('.element').cloneNode(true);
+
+    newElement.querySelector('.element__image').src = e.link;
+    newElement.querySelector('.element__text').textContent = e.name;
+
+    listElements.prepend(newElement);
+}
+
+initialCards.forEach(addNewElement);
