@@ -15,9 +15,14 @@ TODO list:
 */
 
 /* TODO list (new):
-15. Сжались карточки в высоту - поправить
-16. Удалить все остальные элементы, которые добавлены с помощью HTML
+15. !DONE! Сжались карточки в высоту - поправить
+16. !DONE! Удалить все остальные элементы, которые добавлены с помощью HTML
+17. !DONE! Заняться рефакторингом кода, возможно есть способ его сократить
+18. !DONE! Переделать active у лайка как в макете
+19. !DONE! Оптимизировать svg element__trash
+20. !DONE! Переписать let на const
 */
+
 
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/font.css);
@@ -40,20 +45,28 @@ TODO list:
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__in-popup/element__in-popup.css);
+@import url(../blocks/element/__popup-container/element__popup-container.css);
+@import url(../blocks/element/__in-popup/_active/element__in-popup_active.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__image/_in-popup/element__image_in-popup.css);
 @import url(../blocks/element/__container/element__container.css);
 @import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/element/__text/_in-popup/element__text_in-popup.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__trash/element__trash.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__main-container/popup__main-container.css);
-@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
 @import url(../blocks/popup/__item/popup__item.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/close-button/close-button.css);
+@import url(../blocks/close-button/_type_image-popup/close-button_type_image-popup.css);

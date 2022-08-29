@@ -1,15 +1,13 @@
-let page = document.querySelector('.page');
-
-
+const page = document.querySelector('.page');
 
 /* кнопка открытия редактирования формы профиля*/
 
-let popup = page.querySelector('.popup');
-let editButton = page.querySelector('.profile-info__edit-button');
-let nameInput = page.querySelector('.popup__item_el_name') 
-let jobInput = page.querySelector('.popup__item_el_status') 
-let profileInfoName = page.querySelector('.profile-info__name');
-let profileInfoStatus = page.querySelector('.profile-info__status');
+const popup = page.querySelector('.popup');
+const editButton = page.querySelector('.profile-info__edit-button');
+const nameInput = page.querySelector('.popup__item_el_name') 
+const jobInput = page.querySelector('.popup__item_el_status') 
+const profileInfoName = page.querySelector('.profile-info__name');
+const profileInfoStatus = page.querySelector('.profile-info__status');
 
 editButton.addEventListener('click', popupOpen)
 function popupOpen() {
@@ -19,42 +17,34 @@ function popupOpen() {
 }
 
 
-
 /* кнопка открытия редактирования формы нового элемента*/
 
-let addButton = page.querySelector('.add-button')
-let popupNewPicture = page.querySelector('.popup_type_new-picture')
+const addButton = page.querySelector('.add-button')
+const popupNewItem = page.querySelector('.popup_type_new-picture')
 
-addButton.addEventListener('click', popupNewPictureOpen);
-function popupNewPictureOpen() {
-    popupNewPicture.classList.add('popup_opened');
+addButton.addEventListener('click', popupOpenNewItem);
+function popupOpenNewItem() {
+    popupNewItem.classList.add('popup_opened');
 }
 
 
 
-/* кнопка закрытия редактирования формы профиля*/
+/* кнопка закрытия редактирования формы профиля, нового элемента*/
 
-let closeButton = page.querySelector('.popup__close-button');
+const closeButton = page.querySelector('.close-button');
+const closeButtonNewItem = page.querySelector('.close-button_type_new-picture')
+
 closeButton.addEventListener('click', popupClose)
+closeButtonNewItem.addEventListener('click', popupClose)
+
 function popupClose() {
     popup.classList.remove('popup_opened');
+    popupNewItem.classList.remove('popup_opened');
 }
-
-
-
-/* кнопка закрытия редактирования формы нового элемента*/
-
-let closeButtonNewPicture = page.querySelector('.popup__close-button_type_new-picture')
-closeButtonNewPicture.addEventListener('click', popupNewPictureClose)
-function popupNewPictureClose() {
-    popupNewPicture.classList.remove('popup_opened');
-}
-
-
 
 /* функция заполнения формы профиля*/
 
-let formElement = page.querySelector('.popup__form') 
+const formElement = page.querySelector('.popup__form') 
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); // предотвращает перезагрузку
@@ -65,84 +55,6 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
-
-
-/* функция заполнения формы нововй карточки*/
-
-const formElementNewPicture = page.querySelector('.popup__form_type_new-picture') 
-const inputPlace = page.querySelector('.popup__item_el_place')
-const inputSrc = page.querySelector('.popup__item_el_src')
-
-function popupCloseNewPicture() {
-  popupNewPicture.classList.remove('popup_opened');
-}
-
-function formSubmitHandlerNewPicture (evt) {
-  evt.preventDefault(); // предотвращает перезагрузку
-  const templateElement = page.querySelector('.template-element').content; // здесь мы создаем новую переменную и наполняем ее содержимым template
-  const newElement = templateElement.querySelector('.element').cloneNode(true); // здесь мы создаем новую переменную в которую клонируем часть предыдущей переменной
-
-  newElement.querySelector('.element__image').src = inputSrc.value; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым 
-  newElement.querySelector('.element__text').textContent = inputPlace.value; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым
-
-  listElements.prepend(newElement); // здесь мы добавляем склонированную переменную с новыми показателями в начало списка с таким карточками
-  popupCloseNewPicture()
-
-
-  // добаили возможность ставить лайки // 
-  let like = page.querySelector('.element__like')
-
-  function likeActive(eee) {
-    console.log(eee);
-    eee.target.classList.toggle('element__like_active')
-  }
-
-  like.addEventListener('click', likeActive)
-}
-
-formElementNewPicture.addEventListener('submit', formSubmitHandlerNewPicture); 
-
-
-
-/* like */
-
-// let like = page.querySelector('.element__like');
-// like.addEventListener('click', function (eee){
-//   console.log(eee)
-// });
-
-// let addButton = page.querySelector('.add-button')
-// let popupNewPicture = page.querySelector('.popup_type_new-picture')
-
-// addButton.addEventListener('click', popupNewPictureOpen);
-// function popupNewPictureOpen() {
-//     popupNewPicture.classList.add('popup_opened');
-// }
-
-// --------------------Работает, но только спервым элементом среди созданных внутри HTML -------------------- //
-
-// let like = page.querySelector('.element__like')
-
-// function likeActive() {
-//   like.classList.add('element__like_active');
-// }
-
-// like.addEventListener('click', likeActive)
-
-// --------------------Работает, но только спервым элементом среди созданных внутри HTML -------------------- //
-
-
-
-// ('click', function (like){
-//   console.log(like);
-//   like.target.classList.toggle('.element__like_active');
-// });
-
-// let closeButtonNewPicture = page.querySelector('.popup__close-button_type_new-picture')
-// closeButtonNewPicture.addEventListener('click', popupNewPictureClose)
-// function popupNewPictureClose() {
-//     popupNewPicture.classList.remove('popup_opened');
-// }
 
 
 /* template */
@@ -174,95 +86,60 @@ const initialCards = [
     }
 ]; 
 
+const formElementNewItem = page.querySelector('.popup__form_type_new-picture') 
+const inputPlace = page.querySelector('.popup__item_el_place')
+const inputSrc = page.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
 
-function addNewElement(e) {
-    const templateElement = page.querySelector('.template-element').content; // здесь мы создаем новую переменную и наполняем ее содержимым template
-    const newElement = templateElement.querySelector('.element').cloneNode(true); // здесь мы создаем новую переменную в которую клонируем часть предыдущей переменной
+function addNewItem (link, name) {
+  // НОВАЯ КАРТОЧКА //
+  const templateElement = page.querySelector('.template-element').content; 
+  const newElement = templateElement.querySelector('.element').cloneNode(true); 
+  newElement.querySelector('.element__image').src = link; 
+  newElement.querySelector('.element__text').textContent = name;
+  listElements.prepend(newElement); 
+  popupClose()
 
-    newElement.querySelector('.element__image').src = e.link; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым 
-    newElement.querySelector('.element__text').textContent = e.name; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым
-
-    listElements.prepend(newElement); // здесь мы добавляем склонированную переменную с новыми показателями в начало списка с таким карточками
-    
-
-    // добаили возможность ставить лайки // 
-    let like = page.querySelector('.element__like')
-
-    function likeActive(eee) {
-      console.log(eee);
-      eee.target.classList.toggle('element__like_active')
-    }
-
-    like.addEventListener('click', likeActive)
+  // УДАЛЕНИЕ // 
+  newElement.querySelector('.element__trash').addEventListener('click', function(e){
+    const element = e.target.closest('.element')
+    element.remove()
+  })
+  
+  // ЛАЙК // 
+  const like = newElement.querySelector('.element__like')
+  function activeLike(e) {
+    e.target.classList.toggle('element__like_active')
+  }
+  like.addEventListener('click', activeLike)
+  
+  // ПОПАП // 
+  newElement.querySelector('.element__image_in-popup').src = link;
+  newElement.querySelector('.element__text_in-popup').textContent = name;
+  const elementInPopup = page.querySelector('.element__in-popup')
+  
+  newElement.querySelector('.element__image').addEventListener('click', function(){
+    elementInPopup.classList.add('element__in-popup_active')
+  })
+  
+  const closeButtonImagePopup = page.querySelector('.close-button_type_image-popup')
+  closeButtonImagePopup.addEventListener('click', function(){
+    elementInPopup.classList.remove('element__in-popup_active')
+  })
 }
 
-initialCards.forEach(addNewElement);
+function handleSubmit (e) {
+  e.preventDefault(); // предотвращает перезагрузку
+  addNewItem(inputSrc.value, inputPlace.value); // берет содержимое в инпутах и подставляет в формулу
+}
+
+formElementNewItem.addEventListener('submit', handleSubmit); 
 
 
+function addInitialCards(){
+  for (let i=0; i<initialCards.length; i++){
+    addNewItem(initialCards[i].link, initialCards[i].name);
+  }
+}
 
-// ПоПытки
-
-// function addNewElementAgain(inputSrc, inputPlace) {
-//   const templateElement = page.querySelector('.template-element').content; // здесь мы создаем новую переменную и наполняем ее содержимым template
-//   const newElement = templateElement.querySelector('.element').cloneNode(true); // здесь мы создаем новую переменную в которую клонируем часть предыдущей переменной
-
-//   newElement.querySelector('.element__image').src = inputSrc; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым 
-//   newElement.querySelector('.element__text').textContent = inputPlace; // здесь мы ищем часть нашей переменной и наполняем ее новым содержимым
-
-//   listElements.prepend(newElement); // здесь мы добавляем склонированную переменную с новыми показателями в начало списка с таким карточками
-// }
-
-// addNewElementAgain(inputSrc, inputPlace)
-
-
-// const inputPlace = page.querySelector('.popup__item_el_place')
-// const inputSrc = page.querySelector('.popup__item_el_src')
-// const templateElement = page.querySelector('.template-element')
-// const formElementNewImage = page.querySelector('.popup__form_type_new-picture')
-
-// // popup__item_el_place = element__image
-// // popup__item_el_src = element__text
-
-// function handleSubmit(e){
-//     e.preventDefault()
-
-//     const place = inputPlace.value
-//     const src = inputSrc.value
-//     addTodo(place, src)
-// } 
-
-// function addTodo(place, src){
-//     const newItemElement = templateElement.content.cloneNode(true)
-//     newItemElement.querySelector('.element__image').textContent = place;
-//     newItemElement.querySelector('.element__text').textContent = src;
-
-//     listElements.prepend(newElement); 
-// }
-
-// formElementNewImage.addEventListener('submit', formSubmitHandler); 
-
-
-/* функция заполнения формы нового элемента*/
-
-// function formSubmitNewPictureHandler (evt) {
-//     const templateElement = page.querySelector('.template-element').content;
-//     const newElement = templateElement.querySelector('.element').cloneNode(true);
-
-//     evt.preventDefault(); // предотвращает перезагрузку
-//     newElement.querySelector('.element__text').textContent = placeInput.value;
-//     newElement.querySelector('.element__image').src = srcInput.value;
-//     popupNewPictureClose();
-
-//     listElements.prepend(newElement);
-// }
-
-
-// function submitformElementNewPicture() {
-//     evt.preventDefault();
-//     addNewElement();
-//     popupClose();
-// } 
-
-// let formElementNewPicture = page.querySelector('.popup__form_type_new-picture')
-// formElementNewPicture.addEventListener('submit', addNewElement); 
+addInitialCards()
