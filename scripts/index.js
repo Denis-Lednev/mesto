@@ -9,13 +9,16 @@ const jobInput = page.querySelector('.popup__item_el_status')
 const profileInfoName = page.querySelector('.profile-info__name');
 const profileInfoStatus = page.querySelector('.profile-info__status');
 
-editButton.addEventListener('click', popupOpen)
-function popupOpen() {
-    popup.classList.add('popup_opened');
-    nameInput.value = profileInfoName.textContent
-    jobInput.value = profileInfoStatus.textContent
+editButton.addEventListener('click', openPopup, editProfile)
+
+function editProfile() {
+  nameInput.value = profileInfoName.textContent
+  jobInput.value = profileInfoStatus.textContent
 }
 
+function openPopup() {
+  popup.classList.add('popup_opened');
+}
 
 /* кнопка открытия редактирования формы нового элемента*/
 
