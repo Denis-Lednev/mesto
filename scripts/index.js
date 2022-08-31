@@ -25,6 +25,7 @@ function editProfile() {
 }
 
 editButton.addEventListener('click', openPopupProfile, editProfile);
+editButton.addEventListener('click', editProfile);
 
 
 /* кнопка открытия редактирования формы нового элемента*/
@@ -58,6 +59,8 @@ function closeCardPopup(){
 
 const closeButtons = document.querySelectorAll('.close-button');
 
+// универсальный обработчик крестиков
+
 closeButtons.forEach(function(button){
   const popup = button.closest('.popup');
   button.addEventListener('click', function(){closePopup(popup)})
@@ -65,16 +68,16 @@ closeButtons.forEach(function(button){
 
 /* функция заполнения формы профиля*/
 
-const formElement = page.querySelector('.popup__form') 
+const profileForm = page.querySelector('.popup__form') 
 
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // предотвращает перезагрузку
-    profileInfoName.textContent = nameInput.value;
-    profileInfoStatus.textContent = jobInput.value;
-    // closePopup();
+function handleProfileFormSubmit (evt) {
+  evt.preventDefault(); // предотвращает перезагрузку
+  profileInfoName.textContent = nameInput.value;
+  profileInfoStatus.textContent = jobInput.value;
 }
 
-formElement.addEventListener('submit', formSubmitHandler); 
+profileForm.addEventListener('submit', handleProfileFormSubmit); 
+profileForm.addEventListener('submit', closeProfilePopup); 
 
 
 
@@ -107,7 +110,7 @@ const initialCards = [
     }
 ]; 
 
-const formElementNewItem = page.querySelector('.popup__form_type_new-picture') 
+const cardForm = page.querySelector('.popup__form_type_new-picture') 
 const inputPlace = page.querySelector('.popup__item_el_place')
 const inputSrc = page.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
@@ -154,7 +157,8 @@ function handleSubmit (e) {
   addNewItem(inputSrc.value, inputPlace.value); // берет содержимое в инпутах и подставляет в формулу
 }
 
-formElementNewItem.addEventListener('submit', handleSubmit); 
+cardForm.addEventListener('submit', handleSubmit); 
+cardForm.addEventListener('submit', closeCardPopup); 
 
 
 function addInitialCards(){
