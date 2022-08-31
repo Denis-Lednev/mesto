@@ -41,16 +41,27 @@ function openCardPopup() {
 
 /* кнопка закрытия редактирования формы профиля, нового элемента*/
 
-const closeButton = page.querySelector('.close-button');
-const closeButtonNewItem = page.querySelector('.close-button_type_new-picture')
+const profileCloseButton = page.querySelector('.profile-close-button');
+const cardCloseButton = page.querySelector('.close-button_type_new-picture')
 
-closeButton.addEventListener('click', popupClose)
-closeButtonNewItem.addEventListener('click', popupClose)
-
-function popupClose() {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    cardPopup.classList.remove('popup_opened');
 }
+
+function closeProfilePopup(){
+  closePopup(profilePopup)
+}
+
+function closeCardPopup(){
+  closePopup(cardPopup)
+}
+
+const closeButtons = document.querySelectorAll('.close-button');
+
+closeButtons.forEach(function(button){
+  const popup = button.closest('.popup');
+  button.addEventListener('click', function(){closePopup(popup)})
+})
 
 /* функция заполнения формы профиля*/
 
@@ -60,7 +71,7 @@ function formSubmitHandler (evt) {
     evt.preventDefault(); // предотвращает перезагрузку
     profileInfoName.textContent = nameInput.value;
     profileInfoStatus.textContent = jobInput.value;
-    popupClose();
+    // closePopup();
 }
 
 formElement.addEventListener('submit', formSubmitHandler); 
@@ -108,7 +119,7 @@ function addNewItem (link, name) {
   newElement.querySelector('.element__image').src = link; 
   newElement.querySelector('.element__text').textContent = name;
   listElements.prepend(newElement); 
-  popupClose()
+  // closePopup()
 
   // УДАЛЕНИЕ // 
   newElement.querySelector('.element__trash').addEventListener('click', function(e){
