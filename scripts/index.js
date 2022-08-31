@@ -9,25 +9,32 @@ const jobInput = page.querySelector('.popup__item_el_status')
 const profileInfoName = page.querySelector('.profile-info__name');
 const profileInfoStatus = page.querySelector('.profile-info__status');
 
-editButton.addEventListener('click', openPopup, editProfile)
+const profilePopup = page.querySelector('.profile-popup');
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function openPopupProfile() {
+  openPopup(profilePopup)
+}
 
 function editProfile() {
   nameInput.value = profileInfoName.textContent
   jobInput.value = profileInfoStatus.textContent
 }
 
-function openPopup() {
-  popup.classList.add('popup_opened');
-}
+editButton.addEventListener('click', openPopupProfile, editProfile);
+
 
 /* кнопка открытия редактирования формы нового элемента*/
 
 const addButton = page.querySelector('.add-button')
-const popupNewItem = page.querySelector('.popup_type_new-picture')
+const cardPopup = page.querySelector('.popup_type_new-picture')
 
-addButton.addEventListener('click', popupOpenNewItem);
-function popupOpenNewItem() {
-    popupNewItem.classList.add('popup_opened');
+addButton.addEventListener('click', openCardPopup);
+function openCardPopup() {
+    cardPopup.classList.add('popup_opened');
 }
 
 
@@ -42,7 +49,7 @@ closeButtonNewItem.addEventListener('click', popupClose)
 
 function popupClose() {
     popup.classList.remove('popup_opened');
-    popupNewItem.classList.remove('popup_opened');
+    cardPopup.classList.remove('popup_opened');
 }
 
 /* функция заполнения формы профиля*/
