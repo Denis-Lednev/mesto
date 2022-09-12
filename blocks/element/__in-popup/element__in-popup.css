@@ -5,7 +5,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-    position: fixed; /* Возможно надо сделать фиксом*/
+    position: fixed; 
     z-index: 1;
     top: 0;
     left: 0;

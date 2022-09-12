@@ -128,10 +128,11 @@ function createCard(link, name) {
   // НОВАЯ КАРТОЧКА //
   const templateElement = page.querySelector('.template-element').content; 
   const cardElement = templateElement.querySelector('.element').cloneNode(true); 
-  const cardImage = cardElement.querySelector('.element__image');
+  const cardImage = cardElement.querySelector('.card-image');
   cardImage.src = link; 
   cardImage.alt = `картинка с названием ${name}`; 
-  cardElement.querySelector('.element__text').textContent = name;
+  const cardText = cardElement.querySelector('.card-text');
+  cardText.textContent = name;
 
   // УДАЛЕНИЕ // 
   cardElement.querySelector('.element__trash').addEventListener('click', function(){
@@ -146,18 +147,18 @@ function createCard(link, name) {
   like.addEventListener('click', toggleLike)
   
   // ПОПАП // 
-  cardElement.querySelector('.element__image_in-popup').src = link;
-  cardElement.querySelector('.element__text_in-popup').textContent = name;
-  const imagePopup = page.querySelector('.element__in-popup')
+
+  const imagePopup = page.querySelector('.image-popup')
+  const cardImagePopup = page.querySelector('.card-image_popup');
+  const cardTextPopup = page.querySelector('.card-text_popup');
+
+  function openPopupImage() {
+    openPopup(imagePopup)
+    cardImagePopup.src = cardImage.src;
+    cardTextPopup.textContent = cardText.textContent;
+  }
+  cardImage.addEventListener('click', openPopupImage)
   
-  cardImage.addEventListener('click', function(){
-    imagePopup.classList.add('element__in-popup_active')
-  })
-  
-  // const closeButtonImagePopup = page.querySelector('.close-button_type_image-popup')
-  // closeButtonImagePopup.addEventListener('click', function(){
-  //   imagePopup.classList.remove('element__in-popup_active')
-  // })
   return cardElement;
 }
 

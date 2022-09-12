@@ -1,0 +1,6 @@
+.image-popup{
+    background-color: rgba(0, 0, 0, .9);
+    top: 0; /* возможно лишнее */
+    left: 0; /* возможно лишнее */
+    cursor: auto;
+}
