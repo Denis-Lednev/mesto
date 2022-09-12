@@ -21,8 +21,12 @@ TODO list:
 18. !DONE! Переделать active у лайка как в макете
 19. !DONE! Оптимизировать svg element__trash
 20. !DONE! Переписать let на const
-*/
 
+
+
+/* TODO list (new):
+21. Решить проблему с открывающимся попапом картинки, все ломается, если раскоментиовать прошлый рабочий код
+*/
 
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/font.css);
