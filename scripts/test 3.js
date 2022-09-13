@@ -38,15 +38,24 @@ function openCardPopup() {
 }
 
 
+
 /* кнопка закрытия редактирования формы профиля, нового элемента*/
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-// универсальный обработчик крестиков
+function closeProfilePopup(){
+  closePopup(profilePopup)
+}
+
+function closeCardPopup(){
+  closePopup(cardPopup)
+}
 
 const closeButtons = document.querySelectorAll('.close-button');
+
+// универсальный обработчик крестиков
 
 closeButtons.forEach(function(button){
   const popup = button.closest('.popup');
@@ -65,16 +74,13 @@ function handleProfileFormSubmit (evt) {
 }
 
 profileForm.addEventListener('submit', handleProfileFormSubmit); 
+profileForm.addEventListener('submit', closeProfilePopup); 
 
 
 
 /* template */
 
 const initialCards = [
-    {
-      name: '=)',
-      link: './images/mem/bez-nazvaniya_6tWSl8yF.jpg'
-    },
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -107,20 +113,17 @@ const inputSrc = page.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
 
 
+
+
 function createCard(item) {
   // НОВАЯ КАРТОЧКА //
   const templateElement = page.querySelector('.template-element').content; 
   const cardElement = templateElement.querySelector('.element').cloneNode(true); 
   const cardImage = cardElement.querySelector('.card-image');
+  cardImage.setAttribute('src', item.link)
+  cardImage.setAttribute('alt', `картинка с названием ${item.name}`)
   const cardText = cardElement.querySelector('.card-text');
-  cardImage.src = item.link; 
   cardText.textContent = item.name;
-  cardImage.alt = `картинка с названием ${item.name}`
-  // с помощью item.link и item.name здесь мы как бы создаем структуру карточки: 
-    // item {
-    //   link: ...
-    //   name: ...
-    // }
 
   // УДАЛЕНИЕ // 
   cardElement.querySelector('.element__trash').addEventListener('click', function(){
@@ -152,19 +155,17 @@ function createCard(item) {
 }
 
 function addNewItem (link, name) {
-  const newElement = createCard(link, name);
+  const newElement = createCard(link, name)
   listElements.prepend(newElement); 
 }
 
 function handleCardFormSubmit (e) {
   e.preventDefault(); // предотвращает перезагрузку
-  addNewItem({
-    link: inputSrc.value,
-    name: inputPlace.value
-  })
+  addNewItem(inputSrc.value, inputPlace.value); // берет содержимое в инпутах и подставляет в формулу
   e.target.reset();
 }
 
 cardForm.addEventListener('submit', handleCardFormSubmit); 
+cardForm.addEventListener('submit', closeCardPopup); 
 
 initialCards.forEach(addNewItem)
