@@ -73,7 +73,7 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 const initialCards = [
     {
       name: '=)',
-      link: './images/mem/bez-nazvaniya_6tWSl8yF.jpg'
+      link: './images/mem/mem.jpg'
     },
     {
       name: 'Архыз',
