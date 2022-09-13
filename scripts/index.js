@@ -41,9 +41,6 @@ function openCardPopup() {
 
 /* кнопка закрытия редактирования формы профиля, нового элемента*/
 
-const profileCloseButton = page.querySelector('.profile-close-button');
-const cardCloseButton = page.querySelector('.card-close-button')
-
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
@@ -56,23 +53,14 @@ function closeCardPopup(){
   closePopup(cardPopup)
 }
 
-// TO DO: Сделать попап картинки именно попапом, как писал ревьер и добавить туда примерно следкющий код ниже
-
-// const imageCloseButton = page.querySelector('.close-button_type_image-popup')
-
-// const imagePopup = page.querySelector('.element__in-popup')
-
-// function closeImagePopup(){
-//   closePopup(imagePopup)
-// }
-
 const closeButtons = document.querySelectorAll('.close-button');
 
 // универсальный обработчик крестиков
 
 closeButtons.forEach(function(button){
   const popup = button.closest('.popup');
-  button.addEventListener('click', function(){closePopup(popup)})
+  button.addEventListener('click', function(){
+    closePopup(popup)})
 })
 
 /* функция заполнения формы профиля*/
@@ -155,6 +143,7 @@ function createCard(link, name) {
   function openPopupImage() {
     openPopup(imagePopup)
     cardImagePopup.src = cardImage.src;
+    cardImagePopup.alt = cardImage.alt;
     cardTextPopup.textContent = cardText.textContent;
   }
   cardImage.addEventListener('click', openPopupImage)
@@ -184,3 +173,9 @@ function addInitialCards(){
 }
 
 addInitialCards()
+
+
+// initialCards.forEach(function (evt){
+//   console.log('111');
+//   addNewItem(initialCards[evt].link, initialCards[evt].name);
+// })
