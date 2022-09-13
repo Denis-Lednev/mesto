@@ -34,14 +34,22 @@ const cardPopup = page.querySelector('.card-popup')
 
 addButton.addEventListener('click', openCardPopup);
 function openCardPopup() {
-    cardPopup.classList.add('popup_opened');
+  cardPopup.classList.add('popup_opened');
 }
 
 
 /* кнопка закрытия редактирования формы профиля, нового элемента*/
 
 function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
+}
+
+function closeProfilePopup(){
+  closePopup(profilePopup)
+}
+
+function closeCardPopup(){
+  closePopup(cardPopup)
 }
 
 // универсальный обработчик крестиков
@@ -62,6 +70,7 @@ function handleProfileFormSubmit (evt) {
   evt.preventDefault(); // предотвращает перезагрузку
   profileInfoName.textContent = nameInput.value;
   profileInfoStatus.textContent = jobInput.value;
+  closeProfilePopup();
 }
 
 profileForm.addEventListener('submit', handleProfileFormSubmit); 
@@ -106,6 +115,9 @@ const inputPlace = page.querySelector('.popup__item_el_place')
 const inputSrc = page.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
 
+const imagePopup = page.querySelector('.image-popup')
+const cardImagePopup = page.querySelector('.card-image_popup');
+const cardTextPopup = page.querySelector('.card-text_popup');
 
 function createCard(item) {
   // НОВАЯ КАРТОЧКА //
@@ -136,10 +148,6 @@ function createCard(item) {
   
   // ПОПАП // 
 
-  const imagePopup = page.querySelector('.image-popup')
-  const cardImagePopup = page.querySelector('.card-image_popup');
-  const cardTextPopup = page.querySelector('.card-text_popup');
-
   function openPopupImage() {
     openPopup(imagePopup)
     cardImagePopup.src = cardImage.src;
@@ -162,6 +170,7 @@ function handleCardFormSubmit (e) {
     link: inputSrc.value,
     name: inputPlace.value
   })
+  closeCardPopup()
   e.target.reset();
 }
 
