@@ -81,10 +81,6 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 const initialCards = [
     {
-      name: '=)',
-      link: './images/mem/mem.jpg'
-    },
-    {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
@@ -145,6 +141,8 @@ function createCard(item) {
     e.target.classList.toggle('element__like_active')
   }
   like.addEventListener('click', toggleLike)
+  
+  
   
   // ПОПАП // 
 
