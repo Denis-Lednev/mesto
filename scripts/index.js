@@ -10,6 +10,9 @@ const profileInfoStatus = page.querySelector('.profile-info__status');
 
 const profilePopup = page.querySelector('.profile-popup');
 
+const imagePopup = page.querySelector('.image-popup')
+const cardImagePopup = page.querySelector('.card-image_popup');
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
@@ -52,6 +55,10 @@ function closeCardPopup(){
   closePopup(cardPopup)
 }
 
+function closeImagePopup(){
+  closePopup(imagePopup)
+}
+
 // универсальный обработчик крестиков
 
 const closeButtons = document.querySelectorAll('.close-button');
@@ -61,6 +68,44 @@ closeButtons.forEach(function(button){
   button.addEventListener('click', function(){
     closePopup(popup)})
 })
+
+// Закрытие попапов через Esc
+
+function closePopupByEsc(evt){
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape'){
+    closePopup(openedPopup)
+  }
+} 
+
+document.addEventListener('keydown', closePopupByEsc)
+
+// Закрытие попапов через overlay
+
+function closePopupByOverlay(popup){
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(evt.target);
+    }
+  })
+}
+
+function closeCardPopupByOverlay(){
+  closePopupByOverlay(cardPopup)
+}
+
+function closeProfilePopupByOverlay(){
+  closePopupByOverlay(profilePopup)
+}
+
+function closeImagePopupByOverlay(){
+  closePopupByOverlay(imagePopup)
+}
+
+cardPopup.addEventListener('click', closeCardPopupByOverlay)
+profilePopup.addEventListener('click', closeProfilePopupByOverlay)
+imagePopup.addEventListener('click', closeImagePopupByOverlay)
+
 
 /* функция заполнения формы профиля*/
 
@@ -107,12 +152,10 @@ const initialCards = [
 ]; 
 
 const cardForm = page.querySelector('.popup__form_type_new-card') 
-const inputPlace = page.querySelector('.popup__item_el_place')
-const inputSrc = page.querySelector('.popup__item_el_src')
+const inputPlace = cardForm.querySelector('.popup__item_el_place')
+const inputSrc = cardForm.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
 
-const imagePopup = page.querySelector('.image-popup')
-const cardImagePopup = page.querySelector('.card-image_popup');
 const cardTextPopup = page.querySelector('.card-text_popup');
 
 function createCard(item) {
