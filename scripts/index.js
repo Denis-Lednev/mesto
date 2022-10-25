@@ -11,24 +11,23 @@ const profileInfoStatus = page.querySelector('.profile-info__status');
 const profilePopup = page.querySelector('.profile-popup');
 
 const imagePopup = page.querySelector('.image-popup')
-const cardImagePopup = page.querySelector('.card-image_popup');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
 function openPopupProfile() {
   openPopup(profilePopup)
 }
 
-function editProfile() {
+function fillInFormInputs() {
   nameInput.value = profileInfoName.textContent
   jobInput.value = profileInfoStatus.textContent
 }
 
 editButton.addEventListener('click', openPopupProfile);
-editButton.addEventListener('click', editProfile);
-
+editButton.addEventListener('click', fillInFormInputs);
 
 /* кнопка открытия редактирования формы нового элемента*/
 
@@ -37,14 +36,14 @@ const cardPopup = page.querySelector('.card-popup')
 
 addButton.addEventListener('click', openCardPopup);
 function openCardPopup() {
-  cardPopup.classList.add('popup_opened');
+  openPopup(cardPopup)
 }
-
 
 /* кнопка закрытия редактирования формы профиля, нового элемента*/
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function closeProfilePopup() {
@@ -79,7 +78,7 @@ function closePopupByEsc(evt) {
   }
 }
 
-document.addEventListener('keydown', closePopupByEsc)
+// document.addEventListener('keydown', closePopupByEsc) // Данный слушатель следует устанавливать при открытии попапа (функция openPopup) и удалять при его закрытии (функция closePopup), но у меня есть проблема с его закрытием, я не могу закрыть форму с карточкой... 
 
 // Закрытие попапов через overlay
 
@@ -107,7 +106,6 @@ cardPopup.addEventListener('click', closeCardPopupByOverlay)
 profilePopup.addEventListener('click', closeProfilePopupByOverlay)
 imagePopup.addEventListener('click', closeImagePopupByOverlay)
 
-
 /* функция заполнения формы профиля*/
 
 const profileForm = page.querySelector('.popup__form_type_profile')
@@ -121,82 +119,50 @@ function handleProfileFormSubmit(evt) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-
-
 /* template */
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const cardForm = page.querySelector('.popup__form_type_new-card')
 const inputPlace = cardForm.querySelector('.popup__item_el_place')
 const inputSrc = cardForm.querySelector('.popup__item_el_src')
 const listElements = page.querySelector('.elements');
-
 const cardTextPopup = page.querySelector('.card-text_popup');
+const cardImagePopup = page.querySelector('.card-image_popup');
+
+const templateElement = page.querySelector('.template-element').content;
+
+function toggleLike(e) {
+  e.target.classList.toggle('element__like_active')
+}
+
+function openPopupImage(evt) {
+  openPopup(imagePopup)
+  cardImagePopup.src = evt.target.src;
+  cardImagePopup.alt = evt.target.alt;
+  cardTextPopup.textContent = evt.target.closest('.element').textContent;
+}
 
 function createCard(item) {
   // НОВАЯ КАРТОЧКА //
-  const templateElement = page.querySelector('.template-element').content;
   const cardElement = templateElement.querySelector('.element').cloneNode(true);
   const cardImage = cardElement.querySelector('.card-image');
   const cardText = cardElement.querySelector('.card-text');
+
   cardImage.src = item.link;
   cardText.textContent = item.name;
   cardImage.alt = `картинка с названием ${item.name}`
-  // с помощью item.link и item.name здесь мы как бы создаем структуру карточки: 
-  // item {
-  //   link: ...
-  //   name: ...
-  // }
 
+  // ПОПАП // 
+  cardImage.addEventListener('click', openPopupImage)
+
+  
   // УДАЛЕНИЕ // 
   cardElement.querySelector('.element__trash').addEventListener('click', function () {
     cardElement.remove()
   })
 
   // ЛАЙК // 
-  const like = cardElement.querySelector('.element__like')
-  function toggleLike(e) {
-    e.target.classList.toggle('element__like_active')
-  }
+    const like = cardElement.querySelector('.element__like')
   like.addEventListener('click', toggleLike)
-
-
-
-  // ПОПАП // 
-
-  function openPopupImage() {
-    openPopup(imagePopup)
-    cardImagePopup.src = cardImage.src;
-    cardImagePopup.alt = cardImage.alt;
-    cardTextPopup.textContent = cardText.textContent;
-  }
-  cardImage.addEventListener('click', openPopupImage)
 
   return cardElement;
 }
