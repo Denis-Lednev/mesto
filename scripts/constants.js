@@ -31,7 +31,7 @@ export const settings = {
   buttonElement: '.popup__submit-button',
   inputErrorClass: 'popup__item_error',
   inactiveButtonClass: 'popup__submit-button_disabled',
-}
+};
 
 export const page = document.querySelector('.page');
 export const profilePopup = page.querySelector(".profile-popup");
