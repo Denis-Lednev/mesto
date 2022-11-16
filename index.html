@@ -7,8 +7,19 @@
   <title>Проект Место</title>
 </head>
 <body class="body">
-  <div class="page">
+  
+  <template class="template-element">
+    <li class="element">
+      <button class="element__trash" type="button"></button>
+      <img class="card-image" alt="Фотография">
+      <div class="element__container">
+        <p class="card-text"></p>
+        <button class="button element__like" type="button"></button>
+      </div>
+    </li>    
+   </template>
 
+  <div class="page">
     <div class="popup profile-popup">
       <div class="popup__main-container">
         <button class ="button close-button profile-close-button" type="button"></button>
@@ -67,17 +78,6 @@
       </div>
 
       <ul class="elements">
-      <template class="template-element">
-        <li class="element">
-          <button class="element__trash" type="button"></button>
-          <img class="card-image" alt="Фотография">
-          <div class="element__container">
-            <p class="card-text"></p>
-            <button class="button element__like" type="button"></button>
-          </div>
-        </li>    
-       </template>
-
       </ul>
     </main>
 
