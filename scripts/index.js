@@ -24,13 +24,13 @@ import {
   profilePopup,
   imagePopup,
   cardPopup,
-  editButton,
+  buttonEditProfile,
   nameInput,
-  jobInput,
+  statusInput,
   profileInfoName,
   profileInfoStatus,
-  closeButtons,
-  addButton,
+  buttonsClosePopup,
+  buttonAddNewCard,
   profileForm,
   cardForm,
   inputPlace,
@@ -41,23 +41,23 @@ import {
 // функция отображения попапа профиля с уже заполненными ранее данными
 function fillInFormInputs() {
   nameInput.value = profileInfoName.textContent;
-  jobInput.value = profileInfoStatus.textContent;
+  statusInput.value = profileInfoStatus.textContent;
 }
 
 // функция редактирования формы профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault(); // предотвращает перезагрузку
   profileInfoName.textContent = nameInput.value;
-  profileInfoStatus.textContent = jobInput.value;
+  profileInfoStatus.textContent = statusInput.value;
   closeProfilePopup();
 }
 
-editButton.addEventListener("click", openPopupProfile);
-editButton.addEventListener("click", fillInFormInputs);
-addButton.addEventListener("click", openCardPopup);
+buttonEditProfile.addEventListener("click", openPopupProfile);
+buttonEditProfile.addEventListener("click", fillInFormInputs);
+buttonAddNewCard.addEventListener("click", openCardPopup);
 
 // универсальный обработчик крестиков
-closeButtons.forEach(function (button) {
+buttonsClosePopup.forEach(function (button) {
   const popup = button.closest(".popup");
   button.addEventListener("click", function () {
     closePopup(popup);
@@ -69,18 +69,28 @@ profilePopup.addEventListener("click", closeOpenedProfileByOverlay);
 imagePopup.addEventListener("click", closeOpenedProfileByOverlay);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
-// общая функция добавления карточки
-function addNewItem(item) {
-  const card = new Card(item, ".template-element");
-  const newElement = card.generateCard();
 
-  listElements.prepend(newElement);
+
+// общая функция добавления карточки
+function createCard(item) {
+  const card = new Card(item, ".template-element");
+  const element = card.generateCard();
+  return element
+}
+
+function renderCard(container, card) {
+  container.prepend(card)
+}
+
+function initialCard(item){
+  const newElement = createCard(item);
+  renderCard(listElements, newElement);
 }
 
 // функция добавления карточки из попапа
 function handleCardFormSubmit(e) {
   e.preventDefault();
-  addNewItem({
+  initialCard({
     link: inputSrc.value,
     name: inputPlace.value,
   });
@@ -91,7 +101,7 @@ function handleCardFormSubmit(e) {
 cardForm.addEventListener("submit", handleCardFormSubmit);
 
 // добавление карточек из имеющегося массива
-initialCards.forEach(addNewItem);
+initialCards.forEach(initialCard);
 
 // активация валидации формы профиля
 const validateCard = new FormValidator(settings, cardForm);
@@ -101,7 +111,6 @@ validateCard.enableValidation();
 const validateProfile = new FormValidator(settings, profileForm);
 validateProfile.enableValidation();
 
-addButton.addEventListener('click', () => {
-  validateCard.enableValidation()
-  console.log('qwqwq')
+buttonAddNewCard.addEventListener('click', () => {
+  validateCard._toggleSubmitButtonState() // я решил использовать именно этот метод, так как если мы просто дисейблим кнопку, то, если мы заполним данные корректно, а потом закроем форму и откроем ее вновь, то мы уже не сможем отправить правильно заполненные данные, поэтому был выбран такой метод...
 })

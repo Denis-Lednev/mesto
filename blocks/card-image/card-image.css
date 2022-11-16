@@ -6,7 +6,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
     .card-image{
         max-height: none;
     }
@@ -16,4 +16,4 @@
     .card-image{
         max-height: 282px;
     }
-}
+} */
