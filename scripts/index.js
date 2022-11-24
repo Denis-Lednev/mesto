@@ -8,7 +8,7 @@ import {
 
 import {
   openPopup,
-  openCardPopup,
+  // openCardPopup,
   openPopupProfile,
   closePopup,
   closeProfilePopup,
@@ -54,7 +54,7 @@ function handleProfileFormSubmit(evt) {
 
 buttonEditProfile.addEventListener("click", openPopupProfile);
 buttonEditProfile.addEventListener("click", fillInFormInputs);
-buttonAddNewCard.addEventListener("click", openCardPopup);
+// buttonAddNewCard.addEventListener("click", openCardPopup);
 
 // универсальный обработчик крестиков
 buttonsClosePopup.forEach(function (button) {
@@ -111,6 +111,12 @@ validateCard.enableValidation();
 const validateProfile = new FormValidator(settings, profileForm);
 validateProfile.enableValidation();
 
+function openCardPopup() {
+  openPopup(cardPopup)
+  validateCard.toggleSubmitButtonState()
+}
+
 buttonAddNewCard.addEventListener('click', () => {
-  validateCard._toggleSubmitButtonState() // я решил использовать именно этот метод, так как если мы просто дисейблим кнопку, то, если мы заполним данные корректно, а потом закроем форму и откроем ее вновь, то мы уже не сможем отправить правильно заполненные данные, поэтому был выбран такой метод...
+  openCardPopup();
+  // validateCard.toggleSubmitButtonState() 
 })

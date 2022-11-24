@@ -9,9 +9,9 @@ function openPopupProfile() {
   openPopup(profilePopup)
 }
 
-function openCardPopup() {
-  openPopup(cardPopup)
-}
+// function openCardPopup() {
+//   openPopup(cardPopup)
+// }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -45,4 +45,12 @@ function closeOpenedProfileByOverlay(evt){
   closePopupByOverlay(evt.target)
 }
 
-export { openPopup, openCardPopup, openPopupProfile, closePopup, closeProfilePopup, closeCardPopup, closePopupByOverlay, closeOpenedProfileByOverlay };
+export { openPopup, 
+  // openCardPopup, 
+  openPopupProfile, 
+  closePopup, 
+  closeProfilePopup, 
+  closeCardPopup, 
+  closePopupByOverlay, 
+  closeOpenedProfileByOverlay 
+};
